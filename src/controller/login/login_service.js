@@ -16,7 +16,6 @@ LoginService.get(loginPath, async (req, res) => {
     });
 
     const items = snapshot.docs.map(doc => doc.data());
-
     return res.send(items);
 })
 
