@@ -1,22 +1,27 @@
 
 
 const express = require('express')
-const { firebaseConfig } = require('../../..')
+const { firebase } = require('./../../../index')
 const LoginService = express()
-const admin = require('firebase-admin');
+// const admin = require('firebase-admin');
 const loginPath = "/login"
 const LoginModel = require('./login_model');
 
-const firebase = admin.initializeApp(firebaseConfig);
+// const firebase = admin.initializeApp(firebaseConfig);
 LoginService.get(loginPath, async (req, res) => {
-    const db = firebase.firestore();
-    const snapshot = await db.collection('users').get();
-    snapshot.forEach((doc) => {
-        console.log(doc.id, '=>', doc.data());
-    });
 
-    const items = snapshot.docs.map(doc => doc.data());
-    return res.send(items);
+    firebase.default.auth().signInWithEmailAndPassword("a", "b").then((result) => {
+
+        return res.send(result.user);
+    }).catch((err) => {
+
+    });
+    // const items = snapshot.docs.map(doc => doc.data());
+    // admin
+    //     .auth()
+    //     .getUserByProviderUid("zD0SY6iWObQSkGotIF9yS9dbTS93")
+
+    // return res.send(items);
 })
 
 LoginService.post(loginPath, (req, res) => {
