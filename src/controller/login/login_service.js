@@ -32,7 +32,7 @@ LoginService.post(loginPath, validate(LoginModel.loginValidation, {}, {}), (req,
 
 
 LoginService.post(forgotPath, validate(LoginModel.forgotValidation, {}, {}), (req, res) => {
-    const result = firebaseApp.default.auth().sendPasswordResetEmail(req.body.email).then((result) => {
+    firebaseApp.default.auth().sendPasswordResetEmail(req.body.email).then((result) => {
         return res.send({ "message": "Password forgot mail sended" });
 
     }).catch((err) => {
