@@ -7,4 +7,10 @@ const categoryVaidation = {
   }),
 };
 
-module.exports = { categoryVaidation };
+const latestVaidation = {
+  body: Joi.object({
+    image: Joi.string().uri().required(),
+  }),
+};
+
+module.exports = { categoryVaidation, latestVaidation };

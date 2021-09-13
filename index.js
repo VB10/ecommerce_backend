@@ -9,6 +9,7 @@ const { LoginService } = require('./src/controller/login/login_service');
 const { ValidationError } = require('express-validation');
 const { HomeService } = require('./src/controller/home/home_contoller');
 const serviceAccount = require('./secret/serviceAccountKey.json');
+const { ProductService } = require('./src/controller/home/product_controller');
 
 const firebaseConfig = {
   credential: admin.credential.applicationDefault(),
@@ -30,6 +31,7 @@ firebaseApp.initializeApp(firebaseConfigNormal);
 app.use(express.json());
 app.use('', LoginService);
 app.use('', HomeService);
+app.use('', ProductService);
 
 app.use(function (err, req, res, next) {
   if (err instanceof ValidationError) {
