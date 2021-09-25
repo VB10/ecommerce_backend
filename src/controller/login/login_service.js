@@ -14,7 +14,10 @@ const firebaseApp = require('firebase');
 const { validate } = require('express-validation');
 const admin = require('firebase-admin');
 const axios = require('axios').default;
-const { FIREBASE_CONFIG_NORMAL } = require('../../constant/project_constant');
+const {
+  FIREBASE_CONFIG_NORMAL,
+  SECURE_TOKEN_URL,
+} = require('../../constant/project_constant');
 
 LoginService.post(
   loginPath,
@@ -79,9 +82,7 @@ LoginService.get(refreshToken, async (req, res) => {
     grant_type: 'refresh_token',
   };
 
-  const url =
-    'https://securetoken.googleapis.com/v1/token?key=' +
-    FIREBASE_CONFIG_NORMAL.apiKey;
+  const url = SECURE_TOKEN_URL + FIREBASE_CONFIG_NORMAL.apiKey;
   axios
     .post(url, JSON.stringify(data), {
       headers: {
