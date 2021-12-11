@@ -22,13 +22,14 @@ SearchService.get(search, (req, res) => {
     .collection(product)
     .get()
     .then((snapshot) => {
-      const data = snapshot.docs
+      const items = snapshot.docs
         .filter((doc) => doc.data().title.toLowerCase().includes(term))
         .map((doc) => ({
           id: doc.id,
           ...doc.data(),
         }));
-      return res.json(data);
+
+      return res.json(items);
     })
     .catch((error) => {
       console.log(error);

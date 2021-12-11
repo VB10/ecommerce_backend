@@ -2,7 +2,7 @@ const express = require('express');
 const ProductService = express.Router();
 const admin = require('firebase-admin');
 const { validate } = require('express-validation');
-const { productValidation } = require('./model/product_model');
+const { productValidation } = require('./validation/product_model');
 
 const product = 'product';
 ProductService.get('/' + product, (req, res) => {

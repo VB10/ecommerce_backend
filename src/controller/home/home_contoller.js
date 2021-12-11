@@ -6,7 +6,7 @@ const { validate } = require('express-validation');
 const {
   categoryVaidation,
   latestVaidation,
-} = require('./model/category_model');
+} = require('./validation/category_model');
 
 const { parseSnapshotAndMerge } = require('./../../product/parser_utility');
 
