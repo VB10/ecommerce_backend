@@ -1,13 +1,13 @@
 const DATABASE_URL = 'https://hwacommerce.firebaseio.com';
 
 const FIREBASE_CONFIG_NORMAL = {
-  apiKey: 'AIzaSyBSyr1XPZDfYcG3HzyZKzuoJGNXs-nh6TM',
-  authDomain: 'hwacommerce.firebaseapp.com',
+  apiKey: '',
+  authDomain: '',
   projectId: 'hwacommerce',
-  storageBucket: 'hwacommerce.appspot.com',
-  messagingSenderId: '331041399851',
-  appId: '1:331041399851:web:a0a2409241f68879c5766e',
-  measurementId: 'G-4Y08WNPYWL',
+  storageBucket: '',
+  messagingSenderId: '',
+  appId: '',
+  measurementId: '',
 };
 
 const SEARCH_KEY_MINUMUM = 3;
