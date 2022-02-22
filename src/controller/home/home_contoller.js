@@ -3,7 +3,12 @@ const HomeService = express.Router();
 const { StatusCodes } = require('http-status-codes');
 const admin = require('firebase-admin');
 const { validate } = require('express-validation');
-const { categoryVaidation } = require('./model/category_model');
+const {
+  categoryVaidation,
+  latestVaidation,
+} = require('./validation/category_model');
+
+const { parseSnapshotAndMerge } = require('./../../product/parser_utility');
 
 const categories = 'categories';
 const latest = 'latest';
@@ -13,11 +18,7 @@ HomeService.get('/' + categories, (req, res) => {
     .collection(categories)
     .get()
     .then((snapshot) => {
-      const data = snapshot.docs.map((doc) => ({
-        id: doc.id,
-        ...doc.data(),
-      }));
-      return res.json(data);
+      return res.json(parseSnapshotAndMerge(snapshot));
     })
     .catch((_) => {});
 });
@@ -28,8 +29,7 @@ HomeService.get('/' + latest, (_, res) => {
     .collection(latest)
     .get()
     .then((snapshot) => {
-      const responseContent = snapshot.docs.map((doc) => doc.data());
-      return res.json(responseContent);
+      return res.json(parseSnapshotAndMerge(snapshot));
     })
     .catch((err) => {});
 });
@@ -53,7 +53,7 @@ HomeService.post(
 
 HomeService.post(
   '/' + latest,
-  validate(categoryVaidation, {}, {}),
+  validate(latestVaidation, {}, {}),
 
   (req, res) => {
     admin

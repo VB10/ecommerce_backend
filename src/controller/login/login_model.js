@@ -15,4 +15,14 @@ const forgotValidation = {
   }),
 };
 
-module.exports = { loginValidation, forgotValidation };
+const registerValidation = {
+  body: Joi.object({
+    displayName: Joi.string().required(),
+    email: Joi.string().email().required(),
+    password: Joi.string()
+      .regex(/[a-zA-Z0-9]{3,30}/)
+      .required(),
+  }),
+};
+
+module.exports = { loginValidation, forgotValidation, registerValidation };
