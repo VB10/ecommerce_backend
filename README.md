@@ -1,6 +1,8 @@
 # Ecommerce App Backend
 
-I made to be an example
+![Firebase](https://github.com/VB10/ecommerce_backend/blob/master/github/Screen%20Shot%202022-02-22%20at%2020.16.59.png?raw=true)
+
+I made to be an example for the full app concept.
 
 ## Installation
 
